@@ -1,9 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using Core.Common.Contracts;
+using CoreCommon.Core;
+using System.Runtime.Serialization;
 
 namespace CarRental.Business.Entities
 {
     [DataContract]
-    public class Car
+    public class Car : EntityBase, IIdentifiableEntity
+
     {
         [DataMember]
         public int CarId { get; set; }
@@ -22,5 +25,12 @@ namespace CarRental.Business.Entities
 
         [DataMember]
         public bool CurrentlyRented { get; set; }
+
+
+        public int EntityId
+        {
+            get { return CarId; }
+            set { CarId = value; }
+        }
     }
 }
