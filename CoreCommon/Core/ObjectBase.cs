@@ -1,5 +1,7 @@
 ﻿using Core.Common.Utils;
 using CoreCommon.Annotations;
+using FluentValidation;
+using FluentValidation.Results;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,11 +9,24 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Web.OData.Query;
+
 
 namespace CoreCommon.Core
 {
     public class ObjectBase : INotifyPropertyChanged
     {
+        public ObjectBase()
+        {
+            _validator = GetValidator();
+            Validate();
+        }
+
+        private bool _isDirty;
+        private IValidator _validator = null;
+
+        protected IEnumerable<ValidationFailure> _validationErrors = null;
+
         private event PropertyChangedEventHandler _PropertyChanged;
 
         private List<PropertyChangedEventHandler> _PropertyChangedSubscribers = new List<PropertyChangedEventHandler>();
@@ -54,9 +69,7 @@ namespace CoreCommon.Core
             OnPropertyChanged(propertyName);
         }
 
-        private bool _isDirty;
-
-
+        [NotNavigable]
         public bool IsDirty
         {
             get => _isDirty; set => _isDirty = value;
@@ -159,5 +172,41 @@ namespace CoreCommon.Core
         {
             throw new NotImplementedException();
         }
+
+        #region Validation
+
+        public virtual IValidator GetValidator()
+        {
+            return null;
+        }
+
+        [NotNavigable]
+        public IEnumerable<ValidationFailure> ValidationErrors
+        {
+            get { return _validationErrors; }
+            set { }
+        }
+
+
+        public void Validate()
+        {
+            if (_validator != null)
+            {
+                ValidationResult result = _validator.Validate(this);
+                _validationErrors = result.Errors;
+            }
+        }
+
+        [NotNavigable]
+        public bool IsValid
+        {
+            get
+            {
+                return (_validationErrors == null || !_validationErrors.Any());
+            }
+        }
+
+        #endregion
+
     }
 }

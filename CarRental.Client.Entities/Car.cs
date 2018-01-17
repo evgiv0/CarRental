@@ -1,4 +1,6 @@
 ﻿using CoreCommon.Core;
+using FluentValidation;
+using System;
 
 namespace CarRental.Client.Entities
 {
@@ -91,6 +93,21 @@ namespace CarRental.Client.Entities
             }
         }
 
+        class CarValidator : AbstractValidator<Car>
+        {
+            public CarValidator()
+            {
+                RuleFor(obj => obj.Description).NotEmpty();
+                RuleFor(obj => obj.Color).NotEmpty();
+                RuleFor(obj => obj.RentalPrice).GreaterThan(0);
+                RuleFor(obj => obj.Year).GreaterThan(2000).LessThan(DateTime.Now.Year);
+            }
+        }
 
+        public override IValidator GetValidator()
+        {
+            return new CarValidator();
+        }
     }
+
 }

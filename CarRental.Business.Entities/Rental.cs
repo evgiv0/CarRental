@@ -32,7 +32,7 @@ namespace CarRental.Business.Entities
             set { RentalId = value; }
         }
 
-        public int OwnerAccountId
+        int IAccountOwnedEntity.OwnerAccountId
         {
             get { return AccountId; }
         }

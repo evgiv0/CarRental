@@ -29,7 +29,7 @@ namespace CarRental.Business.Entities
             set { ReservationId = value; }
         }
 
-        public int OwnerAccountId
+        int IAccountOwnedEntity.OwnerAccountId
         {
             get { return AccountId; }
         }
