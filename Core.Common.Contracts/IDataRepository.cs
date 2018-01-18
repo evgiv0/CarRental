@@ -1,7 +1,6 @@
-﻿using Core.Common.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace CarRental.Data.Contracts
+namespace Core.Common.Contracts
 {
     public interface IDataRepository
     {

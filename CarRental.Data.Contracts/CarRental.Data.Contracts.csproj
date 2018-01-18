@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,13 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository Interfaces\IAccountRepository.cs" />
+    <Compile Include="Repository Interfaces\IRentalRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CarRental.Business.Entities\CarRental.Business.Entities.csproj">
+      <Project>{5034278B-61B5-4C76-A311-E829FA5392A4}</Project>
+      <Name>CarRental.Business.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Common.Contracts\Core.Common.Contracts.csproj">
       <Project>{D79D73B3-2AA8-4BA9-BE30-2A5A43ECE73C}</Project>
       <Name>Core.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreCommon\Core.Common.csproj">
+      <Project>{EEF52A34-7CF5-4A2B-B743-A34578B2CBC7}</Project>
+      <Name>Core.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

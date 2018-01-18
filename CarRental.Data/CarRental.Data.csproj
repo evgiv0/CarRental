@@ -37,6 +37,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -49,7 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarRentalContext.cs" />
+    <Compile Include="DataRepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\CarRepository.cs" />
+    <Compile Include="Repositories\RentalRepository.cs" />
+    <Compile Include="Repositories\ReservationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -59,6 +65,10 @@
     <ProjectReference Include="..\CarRental.Business.Entities\CarRental.Business.Entities.csproj">
       <Project>{5034278B-61B5-4C76-A311-E829FA5392A4}</Project>
       <Name>CarRental.Business.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarRental.Data.Contracts\CarRental.Data.Contracts.csproj">
+      <Project>{94D8DF6B-B682-49AC-9ED9-A937A5527181}</Project>
+      <Name>CarRental.Data.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.Common.Contracts\Core.Common.Contracts.csproj">
       <Project>{D79D73B3-2AA8-4BA9-BE30-2A5A43ECE73C}</Project>
